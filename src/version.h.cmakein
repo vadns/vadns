@@ -1,0 +1,20 @@
+#ifndef _VADNS_VERSION_H_INCLUDED_
+#define _VADNS_VERSION_H_INCLUDED_
+
+
+// Version number: <major>.<minor>.<patch>
+#define VADNS_VERSION_MAJOR         (@PROJECT_VERSION_MAJOR@)
+#define VADNS_VERSION_MINOR         (@PROJECT_VERSION_MINOR@)
+#define VADNS_VERSION_PATCH         (@PROJECT_VERSION_PATCH@)
+
+// VADNS_VERSION_SUFFIX could be:
+//   unstable, alpha, beta, rc, stable
+#define VADNS_VERSION_SUFFIX        "@VADNS_VERSION_SUFFIX@"
+
+
+// Git branch and full commit hash from which we build
+#define VADNS_GIT_BRANCH            "@VADNS_GIT_BRANCH@"
+#define VADNS_GIT_COMMIT_HASH       "@VADNS_GIT_COMMIT_HASH@"
+
+
+#endif  // _VADNS_VERSION_H_INCLUDED_

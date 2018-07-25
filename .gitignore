@@ -1,0 +1,11 @@
+
+# Ignore CLion files
+/.idea/
+/cmake-build-*/
+
+# Ignore cmake generated files (in-source build)
+/CMakeFiles/
+/cmakein/
+/cmake_install.cmake
+/CMakeCache.txt
+/Makefile
