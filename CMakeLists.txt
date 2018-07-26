@@ -73,6 +73,6 @@ set(SOURCE_FILES
     src/main.cpp
     src/core/macros.h
     src/net/server.cpp src/net/server.h
-    )
+    src/dns/iana.h src/compat/types.h)
 
 add_executable(vadns ${SOURCE_FILES})

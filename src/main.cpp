@@ -1,6 +1,7 @@
 
 #include <vadns.h>
 #include <cstdio>
+#include <dns/iana.h>
 
 int main(int argc, char** argv)
 {
