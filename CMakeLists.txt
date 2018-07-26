@@ -34,17 +34,45 @@ execute_process(
 set(CMAKE_CXX_STANDARD 11)
 
 
-# Configure <vadns/version.h>
-configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.cmakein"
-    "${CMAKE_CURRENT_BINARY_DIR}/cmakein/vadns/version.h"
-    @ONLY
-)
+# Add "src" to include directories
+include_directories("src")
+
+# Configure or copy headers in source directory to build dir
+# Add finished directory to include directories
+# configure_file(A B ...):
+#   A is relative to CMAKE_CURRENT_SOURCE_DIR
+#   B is relative to CMAKE_CURRENT_BINARY_DIR
+#
+# "dir" must be relative path to CMAKE_CURRENT_SOURCE_DIR
+macro(ConfigureOrCopyFiles dir)
+    file(GLOB_RECURSE filenames RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}/${dir}/*")
+    # Configure *.cmakein
+    foreach(filename ${filenames})
+        if ("${filename}" MATCHES "\\.cmakein$")
+            string(REGEX REPLACE "\\.cmakein$" "" basename ${filename})
+            message(STATUS "Configure file: ${CMAKE_CURRENT_SOURCE_DIR}/${filename} -> ${CMAKE_CURRENT_BINARY_DIR}/${basename}")
+            configure_file("${filename}" "${basename}" @ONLY)
+        endif()
+    endforeach()
+    # Copy files other than *.cmakein
+    foreach(filename ${filenames})
+        if (NOT "${filename}" MATCHES "\\.cmakein$")
+            message(STATUS "Copy file: ${CMAKE_CURRENT_SOURCE_DIR}/${filename} -> ${CMAKE_CURRENT_BINARY_DIR}/${filename}")
+            configure_file("${filename}" "${filename}" COPYONLY)
+        endif()
+    endforeach()
+    # Add to include directories
+    include_directories("${CMAKE_CURRENT_BINARY_DIR}/${dir}")
+endmacro()
+
+# Configure or copy headers in include/vadns (and add to include directories)
+ConfigureOrCopyFiles(include/vadns)
 
 
 set(SOURCE_FILES
-    src/main.cpp)
-
-include_directories("${CMAKE_CURRENT_BINARY_DIR}/cmakein")
+    src/main.cpp
+    src/core/macros.h
+    src/net/server.cpp src/net/server.h
+    )
 
 add_executable(vadns ${SOURCE_FILES})

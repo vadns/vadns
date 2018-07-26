@@ -1,5 +1,5 @@
-#ifndef _VADNS_VERSION_H_INCLUDED_
-#define _VADNS_VERSION_H_INCLUDED_
+#ifndef _VADNS_VADNS_VERSION_H_INCLUDED_
+#define _VADNS_VADNS_VERSION_H_INCLUDED_
 
 
 // Version number: <major>.<minor>.<patch>
@@ -17,4 +17,4 @@
 #define VADNS_GIT_COMMIT_HASH       "@VADNS_GIT_COMMIT_HASH@"
 
 
-#endif  // _VADNS_VERSION_H_INCLUDED_
+#endif  // _VADNS_VADNS_VERSION_H_INCLUDED_

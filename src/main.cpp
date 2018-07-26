@@ -1,5 +1,5 @@
 
-#include <vadns/version.h>
+#include <vadns.h>
 #include <cstdio>
 
 int main(int argc, char** argv)
